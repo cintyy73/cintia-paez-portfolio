@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/**
+ * Tokens de diseño.
+ *
+ * Tailwind v4 se configura desde CSS (no hay ni debe haber tailwind.config.js).
+ * Las variables se declaran en :root y se exponen como utilidades vía
+ * `@theme inline`. Al inlinear, las utilidades resuelven la variable en tiempo
+ * de ejecución, así el modo oscuro funciona con un solo override en :root.
+ *
+ * Los nombres son semánticos (background, foreground, accent) y no de color
+ * concreto: cambiar la paleta no obliga a tocar ningún componente.
+ */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  /* Superficies */
+  --background: #ffffff;
+  --surface: #f8fafc;
+  --surface-strong: #f1f5f9;
+  --border: #e2e8f0;
+
+  /* Texto */
+  --foreground: #0f172a;
+  --muted: #475569;
+
+  /* Acento */
+  --accent: #0f766e;
+  --accent-contrast: #ffffff;
+  --accent-soft: #f0fdfa;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #080c11;
+    --surface: #0f151c;
+    --surface-strong: #151d26;
+    --border: #1f2b38;
+
+    --foreground: #e6edf3;
+    --muted: #94a3b8;
+
+    --accent: #5eead4;
+    --accent-contrast: #04211d;
+    --accent-soft: #0c2a28;
   }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border: var(--border);
+
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-soft: var(--accent-soft);
+
+  /* next/font ya incluye una fuente de respaldo en la variable. */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  /* Navegación por anclas de la Home. */
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Antes esta regla forzaba Arial y anulaba las fuentes cargadas por
+     next/font. Ahora usa el token, que sí resuelve a Geist. */
+  font-family: var(--font-sans);
+}
+
+/* Foco visible y consistente en toda la navegación por teclado. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
