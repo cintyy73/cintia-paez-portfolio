@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Cintia Paez
 
-## Getting Started
+Portfolio personal de **Cintia Paez**, Desarrolladora de Software Full Stack y
+Docente de Tecnología.
 
-First, run the development server:
+Construido con Next.js 16 (App Router), React 19, TypeScript y Tailwind CSS v4.
+
+## Desarrollo
+
+El proyecto usa **Yarn** como package manager (declarado en `packageManager`).
+No mezclar con npm: generaría un `package-lock.json` en conflicto con
+`yarn.lock`.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install    # instalar dependencias
+yarn dev        # http://localhost:3000
+yarn build      # build de producción
+yarn lint       # ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/            # rutas y convenciones de Next (layout, page, sitemap, robots)
+├── components/
+│   ├── layout/     # Header, Footer
+│   ├── sections/   # secciones de la Home
+│   └── ui/         # piezas reutilizables (Section, Card, Badge, CTAButton...)
+├── content/        # TODO EL CONTENIDO EDITABLE
+└── lib/            # tipos y utilidades
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Editar el contenido
 
-## Learn More
+El contenido está separado de la presentación: para actualizar el sitio
+alcanza con editar `src/content/`, sin tocar componentes.
 
-To learn more about Next.js, take a look at the following resources:
+| Archivo | Qué contiene |
+|---|---|
+| `profile.ts` | Nombre, roles, propuesta de valor, enlaces de contacto |
+| `method.ts` | Los cuatro pasos de "Cómo trabajo" |
+| `projects.ts` | **Fuente única** de proyectos (Home y futuros case studies) |
+| `teaching.ts` | Sección de docencia |
+| `stack.ts` | Tecnologías agrupadas por rol |
+| `navigation.ts` | Secciones y navegación |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Placeholders
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Lo que todavía no está confirmado se escribe como `[PENDIENTE: ...]` y se
+renderiza con un estilo distinto, para que nunca se confunda con un dato real.
 
-## Deploy on Vercel
+```bash
+grep -rn "\[PENDIENTE:" src/
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+La lista completa de lo que falta está en
+[CONTENIDO-PENDIENTE.md](./CONTENIDO-PENDIENTE.md).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Diseño
+
+Los tokens de color y tipografía se definen en `src/app/globals.css`.
+Tailwind v4 se configura desde CSS: **no hay `tailwind.config.js`**.
+El modo oscuro sigue la preferencia del sistema (`prefers-color-scheme`).
+
+## Despliegue
+
+Definir la variable de entorno `NEXT_PUBLIC_SITE_URL` con el dominio real.
+Mientras no exista, `robots.ts` bloquea la indexación a propósito para que un
+preview con placeholders no llegue a los buscadores.
