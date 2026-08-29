@@ -1,6 +1,13 @@
 import type { ReactNode } from "react";
 
-/** Encabezado de sección: volanta, título y bajada opcional. */
+/**
+ * Encabezado de sección: volanta, título y bajada opcional.
+ *
+ * El h2 llega hasta `text-4xl` y no más. Antes escalaba a `text-5xl`, casi el
+ * mismo cuerpo que el h1, y la jerarquía entre "quién es" y "qué sección es"
+ * quedaba plana. Bajarle un escalón al h2 es lo que le da presencia al h1 sin
+ * tener que agrandar nada.
+ */
 export function SectionTitle({
   id,
   eyebrow,
@@ -15,22 +22,22 @@ export function SectionTitle({
   description?: ReactNode;
 }) {
   return (
-    <header className="max-w-2xl lg:max-w-3xl">
+    <header className="max-w-[52ch]">
       {eyebrow ? (
-        <p className="mb-3 text-sm font-medium uppercase tracking-widest text-accent-strong">
+        <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent-strong">
           {eyebrow}
         </p>
       ) : null}
 
       <h2
         id={id}
-        className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl"
+        className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl"
       >
         {title}
       </h2>
 
       {description ? (
-        <p className="mt-4 text-lg leading-relaxed text-muted text-pretty">
+        <p className="mt-5 text-base leading-relaxed text-muted text-pretty sm:text-lg">
           {description}
         </p>
       ) : null}

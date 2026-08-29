@@ -9,10 +9,13 @@ export function Container({
   className?: string;
 }) {
   return (
-    // El ancho crece un escalon en lg: a 1024px el texto queda comodo, pero
-    // en pantallas grandes deja demasiado aire lateral desaprovechado.
+    // 81rem menos el padding lateral deja ~1200px de contenido útil en
+    // pantallas grandes. Los párrafos NO usan ese ancho: cada bloque se acota
+    // con su propio `max-w` en torno a 65-75 caracteres. El container ancho
+    // es para que las composiciones de dos columnas respiren, no para estirar
+    // el texto.
     <div
-      className={`mx-auto w-full max-w-5xl px-6 sm:px-8 lg:max-w-6xl lg:px-10 ${className}`}
+      className={`mx-auto w-full max-w-6xl px-6 sm:px-8 lg:max-w-[81rem] lg:px-12 ${className}`}
     >
       {children}
     </div>
