@@ -12,6 +12,7 @@ import type { NavigationItem } from "@/lib/types";
 export const SECTIONS = {
   home: "home",
   howIWork: "how-i-work",
+  experience: "experience",
   projects: "projects",
   teaching: "teaching",
   stack: "stack",
@@ -20,6 +21,7 @@ export const SECTIONS = {
 
 export const navigation: NavigationItem[] = [
   { label: "Cómo trabajo", href: `#${SECTIONS.howIWork}` },
+  { label: "Experiencia", href: `#${SECTIONS.experience}` },
   { label: "Proyectos", href: `#${SECTIONS.projects}` },
   { label: "Docencia", href: `#${SECTIONS.teaching}` },
   { label: "Stack", href: `#${SECTIONS.stack}` },
