@@ -11,6 +11,7 @@ export const method: MethodStep[] = [
   {
     id: "analysis",
     title: "Análisis de necesidades",
+    shortTitle: "Análisis",
     description:
       "Antes de proponer una solución, entiendo el problema real. Muchas veces lo que se pide no es lo que se necesita, y detectar esa diferencia temprano evita construir algo correcto para el problema equivocado.",
     signals: [
@@ -22,6 +23,7 @@ export const method: MethodStep[] = [
   {
     id: "alternatives",
     title: "Evaluación de alternativas",
+    shortTitle: "Alternativas",
     description:
       "Casi nunca hay un solo camino. Comparo las opciones posibles y hago explícito el intercambio de cada una: qué gano, qué resigno y qué costo tiene sostenerla en el tiempo.",
     signals: [
@@ -33,6 +35,7 @@ export const method: MethodStep[] = [
   {
     id: "integration",
     title: "Integración de tecnologías",
+    shortTitle: "Integración",
     description:
       "Una solución rara vez es una sola herramienta. Conecto las piezas —frontend, backend, datos, servicios externos— cuidando los límites entre ellas, que es donde aparecen los problemas difíciles.",
     signals: [
@@ -44,6 +47,7 @@ export const method: MethodStep[] = [
   {
     id: "maintainability",
     title: "Soluciones mantenibles y escalables",
+    shortTitle: "Mantenibilidad",
     description:
       "El código se escribe una vez y se lee muchas. Construyo pensando en quien lo va a tomar después —incluida yo dentro de seis meses— y en cómo va a crecer sin tener que rehacerse.",
     signals: [

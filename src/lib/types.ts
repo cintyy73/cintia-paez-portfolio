@@ -51,6 +51,8 @@ export type Project = {
   links: ProjectLinks;
   /** Aparece en la Home. */
   featured: boolean;
+  /** Marca el case study más fuerte: se destaca en la Home. */
+  primary?: boolean;
   /** `false` lo oculta del sitio sin borrarlo. */
   published: boolean;
 };
@@ -58,24 +60,54 @@ export type Project = {
 export type MethodStep = {
   id: string;
   title: string;
+  /** Una palabra, para la escalera compacta del Hero. */
+  shortTitle: string;
   description: string;
   /** Cómo se ve ese paso en la práctica. */
   signals: string[];
 };
 
-export type StackItem = {
-  name: string;
-  /** `true` solo si la tecnología está confirmada. Los pendientes se
-   *  renderizan con estilo distinto en lugar de afirmarse como propios. */
-  confirmed: boolean;
+/**
+ * Un puesto en la trayectoria profesional.
+ *
+ * Cubre tanto desarrollo como docencia: son la misma línea de tiempo laboral
+ * y separarlas obligaría a leer la experiencia en dos lugares distintos.
+ */
+export type ExperienceEntry = {
+  id: string;
+  organization: string;
+  role: string;
+  period: string;
+  /** `true` marca el puesto vigente. */
+  current: boolean;
+  /** Qué se hizo ahí. Cada línea, una responsabilidad concreta. */
+  highlights: string[];
 };
 
+/** Un título o programa de formación. */
+export type EducationEntry = {
+  id: string;
+  title: string;
+  institution: string;
+  /** `null` cuando la fecha no está confirmada: no se inventa ni se muestra. */
+  period: string | null;
+  /** `true` mientras esté en curso. */
+  inProgress: boolean;
+};
+
+/**
+ * Una capa del stack profesional.
+ *
+ * La distinción entre experiencia laboral y formación no vive acá sino en la
+ * estructura: `professionalStack` y `academicKnowledge` son listas separadas.
+ * Mezclarlas afirmaría experiencia que no existe.
+ */
 export type StackCategory = {
   id: string;
   title: string;
   /** Qué rol cumple esta categoría en una solución. */
   description: string;
-  items: StackItem[];
+  items: string[];
 };
 
 export type ContactLink = {

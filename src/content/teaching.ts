@@ -3,9 +3,10 @@ import { SECTIONS } from "@/content/navigation";
 /**
  * Docencia presentada como activo técnico.
  *
- * Los `pillars` describen capacidades derivadas de enseñar y son afirmaciones
- * sobre el enfoque, no sobre instituciones ni trayectoria. Todo dato concreto
- * (dónde, qué, desde cuándo) queda como placeholder hasta confirmarse.
+ * Los `pillars` describen capacidades derivadas de enseñar: son afirmaciones
+ * sobre el enfoque, no sobre trayectoria. Los puestos docentes concretos
+ * viven en `experience.ts`, junto con el resto de la línea de tiempo laboral,
+ * para no repetir la misma información en dos secciones.
  */
 export const teaching = {
   id: SECTIONS.teaching,
@@ -37,12 +38,4 @@ export const teaching = {
         "Dar devoluciones útiles, detectar el punto exacto donde alguien se traba y sostener el proceso. Lo mismo que requiere revisar código en equipo.",
     },
   ],
-
-  /** Datos concretos de trayectoria docente: completar antes de publicar. */
-  background: {
-    institution: "[PENDIENTE: institución o instituciones donde enseñás]",
-    subjects: "[PENDIENTE: materias o cursos que dictás]",
-    level: "[PENDIENTE: nivel educativo — ej. secundario, terciario, formación profesional]",
-    since: "[PENDIENTE: año de inicio en la docencia]",
-  },
 } as const;

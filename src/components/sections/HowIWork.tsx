@@ -13,22 +13,29 @@ import { profile } from "@/content/profile";
  * y esa correspondencia es la que hace creíble al portfolio.
  */
 export function HowIWork() {
+  const titleId = `${SECTIONS.howIWork}-title`;
+
   return (
-    <Section id={SECTIONS.howIWork} variant="surface">
+    <Section
+      id={SECTIONS.howIWork}
+      labelledBy={titleId}
+      variant="surface"
+    >
       <SectionTitle
+        id={titleId}
         eyebrow="Método"
         title="Cómo trabajo"
         description={profile.introduction}
       />
 
-      <ol className="mt-12 grid gap-6 sm:grid-cols-2">
+      <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:gap-8">
         {method.map((step, index) => (
           <li key={step.id}>
             <Card className="h-full">
               <div className="flex items-baseline gap-3">
                 <span
                   aria-hidden="true"
-                  className="font-mono text-sm text-accent"
+                  className="font-mono text-sm text-accent-strong"
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -44,7 +51,7 @@ export function HowIWork() {
               <ul className="mt-6 space-y-2 border-t border-border pt-6">
                 {step.signals.map((signal) => (
                   <li key={signal} className="flex gap-3 text-sm text-muted">
-                    <span aria-hidden="true" className="text-accent">
+                    <span aria-hidden="true" className="text-accent-strong">
                       →
                     </span>
                     <span>{signal}</span>
