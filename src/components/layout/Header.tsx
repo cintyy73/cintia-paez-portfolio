@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 import { navigation, SECTIONS } from "@/content/navigation";
 import { profile } from "@/content/profile";
 
@@ -24,10 +25,13 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-4">
           <Link
             href={`#${SECTIONS.home}`}
-            className="text-sm font-semibold tracking-tight"
+            className="flex items-center gap-3"
             onClick={close}
           >
-            {profile.name}
+            <Logo className="h-9" priority />
+            <span className="font-display text-sm font-semibold tracking-wide">
+              {profile.name}
+            </span>
           </Link>
 
           {/* Navegación desktop */}
@@ -58,28 +62,32 @@ export function Header() {
           </button>
         </div>
 
-        {/* Navegación mobile */}
-        {isOpen ? (
-          <nav
-            id="mobile-menu"
-            aria-label="Navegación principal"
-            className="border-t border-border py-4 sm:hidden"
-          >
-            <ul className="flex flex-col gap-1">
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={close}
-                    className="block rounded-md px-2 py-2 text-base text-muted transition-colors hover:bg-surface hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ) : null}
+        {/* Navegación mobile.
+            Se renderiza siempre y se oculta con el atributo `hidden` en vez de
+            desmontarse: así `aria-controls="mobile-menu"` referencia un
+            elemento existente en todos los estados, que es lo que exige una
+            relación ARIA válida. `hidden` lo saca del árbol de accesibilidad
+            y del render visual cuando está cerrado. */}
+        <nav
+          id="mobile-menu"
+          hidden={!isOpen}
+          aria-label="Navegación principal"
+          className="border-t border-border py-4 sm:hidden"
+        >
+          <ul className="flex flex-col gap-1">
+            {navigation.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={close}
+                  className="block rounded-md px-2 py-2 text-base text-muted transition-colors hover:bg-surface hover:text-foreground"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </Container>
     </header>
   );

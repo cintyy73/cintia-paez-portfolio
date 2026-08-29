@@ -10,11 +10,17 @@ import { Container } from "@/components/ui/Container";
  */
 export function Section({
   id,
+  labelledBy,
   children,
   variant = "plain",
   className = "",
 }: {
   id?: string;
+  /**
+   * Id del heading que nombra la sección. Sin nombre accesible, un `section`
+   * no se expone como región navegable para lectores de pantalla.
+   */
+  labelledBy?: string;
   children: ReactNode;
   /** `surface` diferencia visualmente secciones contiguas. */
   variant?: "plain" | "surface";
@@ -25,7 +31,8 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-24 border-t border-border py-20 sm:py-28 ${background} ${className}`}
+      aria-labelledby={labelledBy}
+      className={`scroll-mt-24 border-t border-border py-20 sm:py-28 lg:py-32 ${background} ${className}`}
     >
       <Container>{children}</Container>
     </section>

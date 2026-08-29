@@ -17,7 +17,9 @@ export function Card({
   href?: string;
   className?: string;
 }) {
-  const base = `rounded-xl border border-border bg-background p-6 sm:p-8 ${className}`;
+  // `bg-card` es la superficie mas elevada del tema, y el borde aporta el
+  // limite en claro, donde card y fondo de seccion coinciden.
+  const base = `rounded-xl border border-border bg-card shadow-sm p-6 sm:p-8 ${className}`;
 
   if (!href) {
     return <div className={base}>{children}</div>;
