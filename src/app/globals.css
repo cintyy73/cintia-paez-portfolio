@@ -13,35 +13,49 @@
  */
 
 :root {
-  /* Superficies */
-  --background: #ffffff;
-  --surface: #f8fafc;
-  --surface-strong: #f1f5f9;
-  --border: #e2e8f0;
+  /* Superficies. El fondo de marca no es blanco puro, así que la card sí
+     puede ser blanca y leerse como la superficie más elevada. */
+  --background: #f4f4f9;
+  --surface: #ededf3;
+  --surface-strong: #e4e4ec;
+  --card: #ffffff;
+  /* Gris secundario de marca. A 3.07:1 sobre el fondo cumple el umbral de
+     3:1 para elementos no textuales y delimita las cards con claridad. */
+  --border: #8c8c8c;
 
   /* Texto */
-  --foreground: #0f172a;
-  --muted: #475569;
+  --foreground: #1a1a1a;
+  /* El gris de marca #8c8c8c da 3.07:1: sirve de borde, no de texto.
+     Este gris más oscuro conserva la familia y llega a 5.24:1. */
+  --muted: #666666;
 
-  /* Acento */
-  --accent: #0f766e;
-  --accent-contrast: #ffffff;
-  --accent-soft: #f0fdfa;
+  /* Acento cobre. `accent` es color de RELLENO; como texto sobre fondo claro
+     solo da 2.88:1, por eso existe `accent-strong` (4.85:1) para tipografía,
+     enlaces y foco. Sobre el relleno cobre, el texto va en negro de marca. */
+  --accent: #d97736;
+  --accent-strong: #a85417;
+  --accent-contrast: #1a1a1a;
+  --accent-soft: #fbf0e7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #080c11;
-    --surface: #0f151c;
-    --surface-strong: #151d26;
-    --border: #1f2b38;
+    --background: #121214;
+    --surface: #17171a;
+    --surface-strong: #1e1e22;
+    --card: #1b1b1f;
+    --border: #5f5f6a;
 
-    --foreground: #e6edf3;
-    --muted: #94a3b8;
+    --foreground: #f4f4f9;
+    --muted: #a1a1aa;
 
-    --accent: #5eead4;
-    --accent-contrast: #04211d;
-    --accent-soft: #0c2a28;
+    /* En oscuro el cobre de marca ya contrasta como texto (5.92:1), pero se
+       aclara un paso para enlaces y foco. El relleno sigue siendo el cobre
+       exacto de la identidad. */
+    --accent: #d97736;
+    --accent-strong: #e08a4e;
+    --accent-contrast: #1a1a1a;
+    --accent-soft: #2a1c12;
   }
 }
 
@@ -49,16 +63,19 @@
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-strong: var(--surface-strong);
+  --color-card: var(--card);
   --color-border: var(--border);
 
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
 
   --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --color-accent-contrast: var(--accent-contrast);
   --color-accent-soft: var(--accent-soft);
 
   /* next/font ya incluye una fuente de respaldo en la variable. */
+  --font-display: var(--font-outfit), var(--font-geist-sans), ui-sans-serif, sans-serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
@@ -78,7 +95,8 @@ body {
 
 /* Foco visible y consistente en toda la navegación por teclado. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  /* `accent` puro da 2.88:1 sobre el fondo claro; `accent-strong` 4.85:1. */
+  outline: 2px solid var(--accent-strong);
   outline-offset: 2px;
   border-radius: 2px;
 }

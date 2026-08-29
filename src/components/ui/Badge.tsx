@@ -10,7 +10,7 @@ export function Badge({
 }) {
   const styles = {
     default: "border-border bg-surface-strong text-muted",
-    accent: "border-accent/30 bg-accent-soft text-accent",
+    accent: "border-accent/30 bg-accent-soft text-accent-strong",
     pending: "border-dashed border-muted/50 bg-transparent text-muted/80 italic",
   } as const;
 

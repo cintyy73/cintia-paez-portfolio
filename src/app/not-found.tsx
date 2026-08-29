@@ -4,7 +4,7 @@ import { CTAButton } from "@/components/ui/CTAButton";
 export default function NotFound() {
   return (
     <Container className="py-32">
-      <p className="font-mono text-sm text-accent">404</p>
+      <p className="font-mono text-sm text-accent-strong">404</p>
       <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
         Esta página no existe
       </h1>
