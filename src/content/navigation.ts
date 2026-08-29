@@ -1,10 +1,11 @@
-import type { NavigationItem } from "@/lib/types";
-
 /**
- * Navegación centralizada.
+ * Estructura de navegación.
+ *
+ * Acá vive sólo lo TÉCNICO: los ids de sección y el orden del menú. Las
+ * etiquetas visibles son contenido traducible y viven en `src/i18n/`.
  *
  * Hoy la Home es one-page y todos los destinos son anclas. Cuando existan
- * páginas propias (por ejemplo `/projects`), se cambia el `href` acá y el
+ * páginas propias (por ejemplo `/projects`), se cambia el destino acá y el
  * Header, el Footer y los CTAs quedan actualizados sin tocar componentes.
  */
 
@@ -19,11 +20,17 @@ export const SECTIONS = {
   contact: "contact",
 } as const;
 
-export const navigation: NavigationItem[] = [
-  { label: "Cómo trabajo", href: `#${SECTIONS.howIWork}` },
-  { label: "Experiencia", href: `#${SECTIONS.experience}` },
-  { label: "Proyectos", href: `#${SECTIONS.projects}` },
-  { label: "Docencia", href: `#${SECTIONS.teaching}` },
-  { label: "Stack", href: `#${SECTIONS.stack}` },
-  { label: "Contacto", href: `#${SECTIONS.contact}` },
-];
+export type SectionKey = keyof typeof SECTIONS;
+export type SectionId = (typeof SECTIONS)[SectionKey];
+
+/** Orden del menú. `home` queda fuera: su destino es el logo. */
+export const navigationSections = [
+  "howIWork",
+  "experience",
+  "projects",
+  "teaching",
+  "stack",
+  "contact",
+] as const satisfies readonly SectionKey[];
+
+export type NavigationSectionKey = (typeof navigationSections)[number];

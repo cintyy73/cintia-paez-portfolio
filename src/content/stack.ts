@@ -1,4 +1,4 @@
-import type { StackCategory } from "@/lib/types";
+import type { StackCategoryBase } from "@/lib/types";
 
 /**
  * Stack, en DOS NIVELES separados por estructura, no por una marca dentro de
@@ -6,8 +6,10 @@ import type { StackCategory } from "@/lib/types";
  *
  *   `professionalStack` -> tecnologías defendibles desde experiencia laboral
  *                          real, confirmadas en el CV.
- *   `academicKnowledge` -> estudiadas en formación. Se muestran de forma
- *                          secundaria, sin protagonismo visual.
+ *   conocimientos académicos -> estudiados en formación. Viven en
+ *                          `src/i18n/<locale>/stack.ts` porque algunos son
+ *                          conceptos y no nombres propios ("Programación
+ *                          orientada a objetos"), y esos sí se traducen.
  *
  * El nivel profesional se agrupa por ROL en la solución, no como muro de
  * logos: la idea es mostrar criterio de arquitectura, qué problema resuelve
@@ -22,12 +24,13 @@ import type { StackCategory } from "@/lib/types";
  * los use. Aparecen únicamente en el campo `stack` del proyecto Portfolio,
  * que es donde corresponde. Estar en `package.json` no vuelve profesional a
  * una tecnología.
+ *
+ * Los títulos y descripciones de cada categoría se traducen y viven en
+ * `src/i18n/<locale>/stack.ts`. Los nombres de tecnología, no.
  */
-export const professionalStack: StackCategory[] = [
+export const professionalStack: StackCategoryBase[] = [
   {
     id: "frontend",
-    title: "Frontend",
-    description: "La capa donde el problema se vuelve usable.",
     items: [
       "JavaScript",
       "TypeScript",
@@ -39,42 +42,14 @@ export const professionalStack: StackCategory[] = [
       "Bulma",
     ],
   },
-  {
-    id: "backend",
-    title: "Backend",
-    description: "Lógica, contratos e integración con servicios.",
-    items: ["PHP", "Laravel", "Nest.js"],
-  },
-  {
-    id: "data",
-    title: "Datos",
-    description: "Cómo se modela, se guarda y se consulta la información.",
-    items: ["MySQL", "MongoDB", "DBeaver"],
-  },
+  { id: "backend", items: ["PHP", "Laravel", "Nest.js"] },
+  { id: "data", items: ["MySQL", "MongoDB", "DBeaver"] },
   {
     id: "integration",
-    title: "Integración y automatización",
-    description: "Conectar sistemas que no fueron pensados para hablarse.",
     items: ["Zapier", "Pipedream", "Salesforce", "Zoom", "Postman"],
   },
   {
     id: "tooling",
-    title: "Herramientas y entornos",
-    description: "Lo que sostiene el trabajo en el tiempo.",
     items: ["Git", "GitHub", "GitLab", "Laragon", "WordPress"],
   },
-];
-
-/**
- * Conocimientos de formación. Se declaran como tales: no hay experiencia
- * laboral detrás y el sitio no los presenta como si la hubiera.
- */
-export const academicKnowledge: string[] = [
-  "Python",
-  "Java",
-  "Programación orientada a objetos",
-  "Diseño orientado a objetos",
-  "SQL Server",
-  "SQLite",
-  "Firebase",
 ];
