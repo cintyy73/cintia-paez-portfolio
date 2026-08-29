@@ -19,9 +19,12 @@ export function Projects() {
     hasProjects &&
     featuredProjects.every((project) => isPending(project.title));
 
+  const titleId = `${SECTIONS.projects}-title`;
+
   return (
-    <Section id={SECTIONS.projects}>
+    <Section id={SECTIONS.projects} labelledBy={titleId}>
       <SectionTitle
+        id={titleId}
         eyebrow="Proyectos"
         title="El método aplicado"
         description="Cada proyecto está contado por su razonamiento: qué problema había, qué alternativas se evaluaron y qué se decidió. La lista de tecnologías es la consecuencia, no el punto de partida."
@@ -38,7 +41,11 @@ export function Projects() {
       ) : null}
 
       {hasProjects ? (
-        <ul className="mt-12 grid gap-6 lg:grid-cols-2">
+        <ul
+          className={`mt-12 grid gap-6 lg:mt-16 ${
+            featuredProjects.length > 1 ? "lg:grid-cols-2" : ""
+          }`}
+        >
           {featuredProjects.map((project) => (
             <li key={project.slug}>
               <ProjectCard project={project} href={projectHref(project)} />

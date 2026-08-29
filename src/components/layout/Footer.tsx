@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 import { navigation } from "@/content/navigation";
 import { contactLinks, profile } from "@/content/profile";
 
@@ -18,9 +19,16 @@ export function Footer() {
     <footer className="border-t border-border bg-surface py-12">
       <Container>
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="font-semibold tracking-tight">{profile.name}</p>
-            <p className="mt-1 text-sm text-muted">{profile.roles.join(" · ")}</p>
+          <div className="flex items-center gap-4">
+            <Logo className="h-12" />
+            <div>
+              <p className="font-display font-semibold tracking-wide">
+                {profile.name}
+              </p>
+              <p className="mt-1 text-sm text-muted">
+                {profile.roles.join(" · ")}
+              </p>
+            </div>
           </div>
 
           <nav aria-label="Navegación del pie">

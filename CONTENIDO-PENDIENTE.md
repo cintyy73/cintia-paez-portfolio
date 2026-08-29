@@ -17,8 +17,6 @@ grep -rn "\[PENDIENTE:" src/
 - [ ] **Proyectos reales** — `src/content/projects.ts`
       Los dos proyectos actuales son plantillas vacías. Completarlos o poner
       `published: false` en cada uno.
-- [ ] **Datos de contacto** — `src/content/profile.ts` → `contactLinks`
-      Ninguno está publicado. Completar `value` **y** `href` juntos.
 - [ ] **Stack profesional** — `src/content/stack.ts`
       Ninguna tecnología está confirmada todavía.
 - [ ] **Dominio** — variable de entorno `NEXT_PUBLIC_SITE_URL`
@@ -36,12 +34,9 @@ grep -rn "\[PENDIENTE:" src/
 | `availability` | Estado laboral (ej. "abierta a propuestas") |
 | `photo` | Ruta a la foto en `/public`. Hoy `null` (no se renderiza) |
 | `cv` | Ruta al PDF en `/public`. Hoy `null` |
-| `contactLinks[email]` | Email de contacto **público** |
-| `contactLinks[linkedin]` | URL del perfil |
-| `contactLinks[github]` | URL del perfil |
 
-> El email institucional `cintia.paez@fonselp.org` **no se usó**. Definí cuál
-> querés publicar antes de completar este campo.
+> **Contacto cargado** (2026-08-28): email `cintiapaezdm@gmail.com`, LinkedIn y
+> GitHub. El correo institucional `cintia.paez@fonselp.org` no se usó.
 
 ### `src/content/projects.ts`
 
